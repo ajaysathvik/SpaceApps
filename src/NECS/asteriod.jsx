@@ -10,7 +10,12 @@ const AsteroidData = () => {
     fetch('https://ssd-api.jpl.nasa.gov/nhats.api')
       .then(response => response.json())
       .then(data => {
-        setAsteroids(data.data); // Access the asteroid data
+        console.log(data); // Log the data to inspect the response structure
+        if (data.data) {
+          setAsteroids(data.data); // Make sure this matches the actual response
+        } else {
+          throw new Error('Unexpected API response structure');
+        }
         setLoading(false);
       })
       .catch(error => {
@@ -23,10 +28,10 @@ const AsteroidData = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="asteroid-container">
+    <div>
       <h1>NASA/JPL NHATS Asteroid Data</h1>
       {asteroids.map((asteroid, index) => (
-        <div key={index} className="asteroid-card">
+        <div key={index}>
           <h3>{asteroid.fullname ? asteroid.fullname : asteroid.des}</h3>
           <p><strong>Orbit ID:</strong> {asteroid.orbit_id}</p>
           <p><strong>Magnitude (h):</strong> {asteroid.h}</p>
