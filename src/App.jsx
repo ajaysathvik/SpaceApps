@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {OrbitControls, ScrollControls, Scroll, Stars, CameraControls} from "@react-three/drei";
-
 import Earth from "./models/Earth";
 import SolarSystem from "./models/Solar";
 import { ScrollManager } from "./components/ScrollManager";
