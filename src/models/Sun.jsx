@@ -9,6 +9,7 @@ const SunModel = (props) => {
     return (
         <group {...props} dispose={null}>
             <mesh
+            
                 geometry={nodes.Cube001.geometry}
                 material={materials.None}
                 scale={600}

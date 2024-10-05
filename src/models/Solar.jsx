@@ -1,13 +1,15 @@
-import React from 'react';
-import SunModel from './Sun.jsx';
-import Earth from './Earth';
-import Uranus from "./Uranus.jsx";
-import Jupiter from "./Jupiter.jsx";
-import Venus from "./Venus.jsx";
-import Mercury from "./Mercury.jsx";
-import Mars from "./Mars.jsx";
-import Neptune from "./Neptune.jsx";
-import Saturn from "./Saturn.jsx";
+import React, { useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { useScroll } from '@react-three/drei'
+import SunModel from './Sun'
+import Earth from './Earth'
+import Uranus from "./Uranus"
+import Jupiter from "./Jupiter"
+import Venus from "./Venus"
+import Mercury from "./Mercury"
+import Mars from "./Mars"
+import Neptune from "./Neptune"
+import Saturn from "./Saturn"
 
 const SolarSystem = ({section}) => {
     return (
@@ -25,4 +27,19 @@ const SolarSystem = ({section}) => {
     );
 };
 
-export default SolarSystem;
+  return (
+    <group ref={groupRef} position={solarSystemPosition}>
+      <SunModel position={[0, 0, 0]} />
+      <Mercury orbitRadius={orbitalRadii.Mercury} />
+      <Venus orbitRadius={orbitalRadii.Venus} />
+      <Earth orbitRadius={orbitalRadii.Earth} />
+      <Mars orbitRadius={orbitalRadii.Mars} />
+      <Jupiter orbitRadius={orbitalRadii.Jupiter} />
+      <Saturn orbitRadius={orbitalRadii.Saturn} />
+      <Uranus orbitRadius={orbitalRadii.Uranus} />
+      <Neptune orbitRadius={orbitalRadii.Neptune} />
+    </group>
+  )
+}
+
+export default SolarSystem
