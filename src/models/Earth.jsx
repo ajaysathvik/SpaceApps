@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import earth from '../assets/3d/Earth.glb'
 import { motion } from 'framer-motion-3d'
 import { useThree } from '@react-three/fiber'
@@ -20,7 +20,9 @@ const Earth =(props) =>{
       <mesh
         geometry={nodes.Cube001.geometry}
         material={materials['Default OBJ']}
-      />
+      >
+        </mesh>
+     
     </motion.group>
   )
 }

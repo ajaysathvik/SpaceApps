@@ -5,7 +5,7 @@ import { OrbitControls, ScrollControls, Scroll, Stars } from "@react-three/drei"
 import Earth from "./models/Earth";
 import { ScrollManager } from "./components/ScrollManager";
 import { Interface } from "./components/Interface";
-
+import Jupiter from "./models/Junpiter";
 export default function App() {
   const [section, setSection] = useState(0);
 
@@ -34,6 +34,7 @@ export default function App() {
           <Scroll>
 
           <Earth position={[0, -1000, 200]} section={section} scale={[1.5, 1.5, 1.5]} />
+         <Jupiter/>
           <Scroll html>
             <Interface/>
           </Scroll>
