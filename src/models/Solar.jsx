@@ -26,16 +26,8 @@ const SolarSystem = (props) => {
   const groupRef = useRef();
   const scroll = useScroll();
 
-  const orbitalRadii = {
-    Mercury: 60,
-    Venus: 80,
-    Earth: 100,
-    Mars: 120,
-    Jupiter: 160,
-    Saturn: 200,
-    Uranus: 240,
-    Neptune: 280,
-  };
+
+  
 
   const solarSystemPosition = [0, -500, 0];
 
@@ -50,6 +42,25 @@ const SolarSystem = (props) => {
       groupRef.current.position.z = zPosition;
     }
   });
+
+const SolarSystem = ({section}) => {
+    return (
+        
+              <group ref={groupRef} position={solarSystemPosition}>
+      <SunModel position={[0, 0, 0]} sunRef={sunRef} />
+      <Mercury  position={[0, 0, 0]} mercuryRef={mercuryRef} />
+      <Venus  position={[0, 0, 0]} venusRef={venusRef} />
+      <Earth  position={[0, 0, 0]} earthRef={earthRef} />
+      <Mars position={[0, 0, 0]} marsRef={marsRef} />
+      <Jupiter  position={[0, 0, 0]} jupiterRef={jupiterRef} />
+      <Saturn  position={[0, 0, 0]} saturnRef={saturnRef} />
+      <Uranus  position={[0, 0, 0]} uranusRef={uranusRef} />
+      <Neptune  position={[0, 0, 0]} neptuneRef={neptuneRef} />
+    </group>
+    
+    );
+};
+
 
   return (
     <group ref={groupRef} position={solarSystemPosition}>

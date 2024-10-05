@@ -1,46 +1,76 @@
-import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
-import JupiterModel from "../assets/3d/Jupiter.glb"; // Adjust this path if needed
-import { motion } from 'framer-motion-3d';
-import { useFrame } from '@react-three/fiber';
-
+import React, {useRef, useEffect} from "react";
+import {useGLTF} from "@react-three/drei";
+import JupiterModel from "../assets/3d/Jupiter.glb"; 
+import {useFrame} from '@react-three/fiber';
+import * as THREE from 'three';
+const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 const Jupiter = (props) => {
-    let nodes, materials;
+    const {nodes, materials} = useGLTF(JupiterModel);
+    const ref = props.jupiterRef
 
-    try {
-        const result = useGLTF(JupiterModel);
-        nodes = result.nodes;
-        materials = result.materials;
+    
+    const semiMajorAxis = 7785; 
+    const eccentricity = 0.049; 
+    const speed = 2 * Math.PI / 4331; 
+    const inclination = degreesToRadians(1.3); 
 
-    } catch (error) {
-        console.error('Error loading GLTF:', error);
-        return null;
-    }
 
-    const ref = props.jupiterRef;
+    const createOrbitLine = () => {
+        const orbitPoints = [];
+        const numPoints = 100;
 
-    // Define orbiting properties
-    const orbitRadius = 1000;
-    const speed = 0.02;
+        for (let i = 0; i <= numPoints; i++) {
+            const angle = (i / numPoints) * Math.PI * 2;
+            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+
+            const x = distance * Math.cos(angle);
+            const z = distance * Math.sin(angle) * Math.cos(inclination);
+            const y = distance * Math.sin(angle) * Math.sin(inclination);
+
+            orbitPoints.push(new THREE.Vector3(x, y, z));
+        }
+
+        return new THREE.BufferGeometry().setFromPoints(orbitPoints);
+    };
+
+    const orbitGeometry = createOrbitLine();
+    const orbitMaterial = new THREE.LineBasicMaterial({color: 0xffd700}); 
+    const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
+
+
+    useEffect(() => {
+        const scene = ref.current.parent;
+        scene.add(orbitLine);
+        return () => {
+            scene.remove(orbitLine);
+        };
+    }, [orbitLine]);
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        const x = orbitRadius * Math.cos(time * speed);
-        const z = orbitRadius * Math.sin(time * speed);
+        const trueAnomaly = speed * time;
+
+        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+
+        const x = distance * Math.cos(trueAnomaly);
+        const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
+        const y = distance * Math.sin(trueAnomaly) * Math.sin(inclination);
 
         if (ref.current) {
-            ref.current.position.set(x, 0, z);
+            ref.current.position.set(x, y, z);
         }
     });
 
     return (
-        <motion.group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null}>
             <mesh
+                castShadow
+                receiveShadow
                 geometry={nodes.cubemap.geometry}
-                material={nodes.cubemap.material}
-                scale={0.142984}
+                material={materials['Default OBJ']}
+                scale={0.142984} 
             />
-        </motion.group>
+        </group>
     );
 };
 

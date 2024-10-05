@@ -10,6 +10,7 @@ import {
 import SolarSystem from "./models/Solar";
 import { ScrollManager } from "./components/ScrollManager";
 import { Interface } from "./components/Interface";
+
 // Import the new component
 
 
@@ -32,8 +33,6 @@ const PlanetLogger = ({ sunRef, mercuryRef, venusRef, earthRef, marsRef, jupiter
   return null; // This component doesn't render anything
 };
 
-
-
 export default function App() {
   // State to manage scroll sections
   const [section, setSection] = useState(0);
@@ -50,6 +49,7 @@ export default function App() {
   const neptuneRef = useRef();
 
   return (
+
     <div className="h-screen">
       <Canvas camera={{ position: [0, 0, 400], near: 0.1, far: 10000 }}>
         <ScrollControls pages={2} damping={0.1}>
@@ -67,6 +67,7 @@ export default function App() {
 
           <color attach="background" args={["#000000"]} />
 
+
           <Stars
             radius={80}
             depth={3000}
@@ -76,6 +77,7 @@ export default function App() {
             fade
             speed={0.1}
           />
+
 
           <OrbitControls enableZoom={false} />
 

@@ -5,6 +5,7 @@ import Sun from '../assets/3d/sun.glb'
 const SunModel=(props)=> {
 
     const { nodes, materials } = useGLTF(Sun)
+
     return (
         <group ref={props.sunRef} {...props} dispose={null}>
             <mesh
@@ -12,10 +13,19 @@ const SunModel=(props)=> {
                 geometry={nodes.Cube001.geometry}
                 material={materials.None}
                 scale={600}
-               
+                castShadow
+            />
+            <pointLight
+                ref={lightRef}
+                intensity={10}
+                distance={50000}
+                decay={2}
+                position={[0, 0, 0]}
+                castShadow
+                shadow-bias={-1} 
             />
         </group>
-    )
-}
-export default SunModel;
+    );
+};
 
+export default SunModel;
