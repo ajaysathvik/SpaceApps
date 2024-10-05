@@ -34,12 +34,20 @@ const Mercury = () => {
     return (
         <group ref={ref} dispose={null}>
             <mesh
+            receiveShadow
+            castShadow
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
                 position={[0, 0, 0]}
                 scale={0.004879}
+<<<<<<< HEAD
             />
         </group>
+=======
+            >
+                </mesh>
+        </motion.group>
+>>>>>>> 3b39ef6 (fix: home amination)
     );
 };
 
