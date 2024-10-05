@@ -11,8 +11,6 @@ const Venus = (props) => {
     const {nodes, materials} = useGLTF(VenusModel);
      const ref = props.venusRef;
 
-
-    
     const semiMajorAxis = 108.2; 
     const eccentricity = 0.007; 
     const orbitalPeriod = 224.7; 
@@ -55,7 +53,7 @@ const Venus = (props) => {
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        const trueAnomaly = speed * time * (24 * 60 * 60); 
+        const trueAnomaly = speed * time;
 
         const distance = semiMajorAxis * scaleFactor * (1 - eccentricity * Math.cos(trueAnomaly));
 
