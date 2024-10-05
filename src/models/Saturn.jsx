@@ -30,4 +30,4 @@ const Saturn =(props) =>{
     </group>
   )
 }
-
+export default Saturn;
