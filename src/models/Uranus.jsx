@@ -8,7 +8,7 @@ const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 const Uranus = (props) => {
     const {nodes, materials} = useGLTF(UranusModel);
-    const ref = useRef();
+     const ref = props.uranusRef;
 
     
     const semiMajorAxis = 28710; 
@@ -20,6 +20,7 @@ const Uranus = (props) => {
     const createOrbitLine = () => {
         const orbitPoints = [];
         const numPoints = 100;
+
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;

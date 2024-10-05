@@ -6,9 +6,11 @@ import * as THREE from 'three';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
+
 const Venus = () => {
     const {nodes, materials} = useGLTF(VenusModel);
-    const ref = useRef();
+     const ref = props.venusRef;
+
 
     
     const semiMajorAxis = 108.2; 

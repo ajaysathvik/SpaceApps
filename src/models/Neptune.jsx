@@ -1,3 +1,4 @@
+
 import React, {useRef, useEffect} from "react";
 import {useGLTF} from "@react-three/drei";
 import NeptuneModel from "../assets/3d/Neptune.glb"; 
@@ -8,7 +9,8 @@ const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 const Neptune = (props) => {
     const {nodes, materials} = useGLTF(NeptuneModel);
-    const ref = useRef();
+     const ref = props.neptuneRef;
+
 
     
     const semiMajorAxis = 4497.1; 

@@ -4,11 +4,13 @@ import MarsModel from "../assets/3d/Mars.glb";
 import {useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
 
+
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
-const Mars = () => {
+const Mars = (props) => {
     const {nodes, materials} = useGLTF(MarsModel);
-    const ref = useRef();
+     const ref = props.marsRef; 
+
 
     
     const semiMajorAxis = 2279; 

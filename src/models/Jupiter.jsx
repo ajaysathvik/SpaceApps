@@ -3,12 +3,10 @@ import {useGLTF} from "@react-three/drei";
 import JupiterModel from "../assets/3d/Jupiter.glb"; 
 import {useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
-
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
-
-const Jupiter = () => {
+const Jupiter = (props) => {
     const {nodes, materials} = useGLTF(JupiterModel);
-    const ref = useRef();
+    const ref = props.jupiterRef
 
     
     const semiMajorAxis = 7785; 
@@ -16,7 +14,7 @@ const Jupiter = () => {
     const speed = 2 * Math.PI / 4331; 
     const inclination = degreesToRadians(1.3); 
 
-    
+
     const createOrbitLine = () => {
         const orbitPoints = [];
         const numPoints = 100;
@@ -38,6 +36,7 @@ const Jupiter = () => {
     const orbitGeometry = createOrbitLine();
     const orbitMaterial = new THREE.LineBasicMaterial({color: 0xffd700}); 
     const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
+
 
     useEffect(() => {
         const scene = ref.current.parent;

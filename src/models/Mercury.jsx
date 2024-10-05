@@ -1,14 +1,18 @@
 import React, {useRef, useEffect} from "react";
 import {useGLTF} from "@react-three/drei";
 import MercuryModel from "../assets/3d/Mercury.glb";
-import {useFrame} from '@react-three/fiber';
+
+import { motion } from 'framer-motion';
+import { useFrame } from '@react-three/fiber';
+import { calculateOrbitParameters, createOrbitGeometry, updatePlanetPosition } from '../utils/OrbitFuncs'; // Adjust the path as needed
 import * as THREE from 'three';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 const Mercury = () => {
     const {nodes, materials} = useGLTF(MercuryModel);
-    const ref = useRef();
+       const ref = props.mercuryRef;
+
 
     
     const semiMajorAxis = 579;
@@ -63,7 +67,7 @@ const Mercury = () => {
     });
 
     return (
-        <group ref={ref} dispose={null}>
+        <motion.group ref={ref} dispose={null}>
             <mesh
             receiveShadow
             castShadow
@@ -71,14 +75,12 @@ const Mercury = () => {
                 material={materials['Default OBJ.005']}
                 position={[0, 0, 0]}
                 scale={0.004879}
-<<<<<<< HEAD
+
+        
+
             />
-        </group>
-=======
-            >
-                </mesh>
         </motion.group>
->>>>>>> 3b39ef6 (fix: home amination)
+
     );
 };
 export default Mercury;

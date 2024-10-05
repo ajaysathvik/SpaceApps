@@ -7,8 +7,10 @@ import * as THREE from 'three';
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 const Saturn = (props) => {
-    const {nodes, materials} = useGLTF(SaturnModel);
-    const ref = useRef();
+
+
+     const { nodes, materials } = useGLTF(SaturnsModel);
+    const ref = props.saturnRef;
 
     
     const semiMajorAxis = 14394; 

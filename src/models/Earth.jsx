@@ -6,9 +6,9 @@ import * as THREE from 'three';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
-const Earth = () => {
+const Earth = (props) => {
     const {nodes, materials} = useGLTF(EarthModel);
-    const ref = useRef();
+      const ref = props.earthRef;
 
     
     const semiMajorAxis = 1496; 
