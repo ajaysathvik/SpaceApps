@@ -13,7 +13,7 @@ const SolarSystem = ({ section }) => {
     return (
         <>
             <SunModel position={[0, 0, 0]} />
-            <Mercury/>
+            <Mercury position={[0, 0, 0]} />
             <Venus position={[0, 0, 0]}  />
             <Earth position={[0, 0, 0]} />
             <Mars position={[0, 0, 0]}  />

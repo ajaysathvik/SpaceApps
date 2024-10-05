@@ -36,6 +36,8 @@ const Jupiter = ({ section }) => {
     return (
         <motion.group ref={ref} dispose={null}>
             <mesh
+                castShadow
+                receiveShadow
                 geometry={nodes.cubemap.geometry}
                 material={nodes.cubemap.material}
                 scale={0.142984}

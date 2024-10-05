@@ -6,21 +6,18 @@ import Earth from "./models/Earth";
 import SolarSystem from "./models/Solar";
 import { ScrollManager } from "./components/ScrollManager";
 import { Interface } from "./components/Interface";
-import Jupiter from "./models/Jupiter";
-import Saturn from "./models/Saturn";
-import Neptune from "./models/Neptune";
 
 export default function App() {
   const [section, setSection] = useState(0);
 
   return (
       <div className="h-screen">
-        <Canvas camera={{ position: [0, 0, 600], fov: 75, near: 0.1, far: 10000 }}>
+        <Canvas camera={{ position: [0, 0, 400], fov: 75, near: 0.1, far: 10000 }}>
           <ScrollControls pages={2} damping={0.1}>
-            <ScrollManager section={section} setSection={setSection} />
-
-            <ambientLight intensity={4} />
-            <color attach="background" args={["#000000"]} />
+            <ScrollManager section={section} setSection={setSection}/>
+            <ambientLight intensity={4}/>
+            <pointLight position={[0, 0, 0]} intensity={10} distance={10000} color="#ffffff"/>
+            <color attach="background" args={["#000000"]}/>
 
             {/*<Stars*/}
             {/*    radius={80}*/}
@@ -33,11 +30,11 @@ export default function App() {
             {/*/>*/}
 
             <Scroll>
-              <SolarSystem section={section} />
+              <SolarSystem section={section}/>
               <OrbitControls/>
               <CameraControls></CameraControls>
               <Scroll html>
-                <Interface />
+                <Interface/>
               </Scroll>
             </Scroll>
           </ScrollControls>
