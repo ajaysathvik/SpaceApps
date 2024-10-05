@@ -1,22 +1,22 @@
-import React, { useRef, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import React, {useRef, useEffect} from "react";
+import {useGLTF} from "@react-three/drei";
 import MercuryModel from "../assets/3d/Mercury.glb";
-import { useFrame } from '@react-three/fiber';
+import {useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 const Mercury = () => {
-    const { nodes, materials } = useGLTF(MercuryModel);
+    const {nodes, materials} = useGLTF(MercuryModel);
     const ref = useRef();
 
-    // Mercury data
+    
     const semiMajorAxis = 579;
     const eccentricity = 0.206;
     const speed = 2 * Math.PI / 88;
     const inclination = degreesToRadians(7);
 
-    // Create orbit line geometry
+    
     const createOrbitLine = () => {
         const orbitPoints = [];
         const numPoints = 100;
@@ -36,7 +36,7 @@ const Mercury = () => {
     };
 
     const orbitGeometry = createOrbitLine();
-    const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xffff99 });
+    const orbitMaterial = new THREE.LineBasicMaterial({color: 0xffff99});
     const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
 
     useEffect(() => {

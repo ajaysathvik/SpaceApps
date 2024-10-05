@@ -11,34 +11,21 @@ import Mars from "./Mars"
 import Neptune from "./Neptune"
 import Saturn from "./Saturn"
 
-const SolarSystem = () => {
-  const groupRef = useRef()
-  const scroll = useScroll()
-  
-  const orbitalRadii = {
-    Mercury: 60,
-    Venus: 80,
-    Earth: 100,
-    Mars: 120,
-    Jupiter: 160,
-    Saturn: 200,
-    Uranus: 240,
-    Neptune: 280
-  }
-  
-  const solarSystemPosition = [0, -500, 0]
-  
-  useFrame(() => {
-    //aminating the solar system
-    if (groupRef.current) {
-      const zPosition = -100 + scroll.offset * -800
-      if(scroll.offset <0.8){
-    const yPosition = -600 + scroll.offset * 800  
-        groupRef.current.position.y = yPosition
-    }
-      groupRef.current.position.z = zPosition
-    }
-  })
+const SolarSystem = ({section}) => {
+    return (
+        <>
+            <SunModel position={[0, 0, 0]}/>
+            <Mercury position={[0, 0, 0]}/>
+            <Venus position={[0, 0, 0]}/>
+            <Earth position={[0, 0, 0]}/>
+            <Mars position={[0, 0, 0]}/>
+            <Jupiter position={[0, 0, 0]}/>
+            <Saturn position={[0, 0, 0]}/>
+            <Uranus position={[0, 0, 0]}/>
+            <Neptune position={[0, 0, 0]}/>
+        </>
+    );
+};
 
   return (
     <group ref={groupRef} position={solarSystemPosition}>

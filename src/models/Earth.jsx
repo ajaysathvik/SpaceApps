@@ -1,34 +1,77 @@
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { motion } from 'framer-motion-3d';
-import { useFrame } from '@react-three/fiber';
-import earth from '../assets/3d/Earth.glb';
-const Earth = ({ section }) => {
-  const { nodes, materials } = useGLTF(earth);
-  const ref = useRef();
+import React, {useRef, useEffect} from 'react';
+import {useGLTF} from '@react-three/drei';
+import EarthModel from '../assets/3d/Earth.glb';
+import {useFrame} from '@react-three/fiber';
+import * as THREE from 'three';
 
-  const orbitRadius = 700;
-  const speed = 0.02;
+const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    const x = orbitRadius * Math.cos(time * speed);
-    const z = orbitRadius * Math.sin(time * speed);
+const Earth = () => {
+    const {nodes, materials} = useGLTF(EarthModel);
+    const ref = useRef();
 
-    if (ref.current) {
-      ref.current.position.set(x, 0, z);
-    }
-  });
+    
+    const semiMajorAxis = 1496; 
+    const eccentricity = 0.017; 
+    const speed = 2 * Math.PI / 365.25; 
+    const inclination = degreesToRadians(0); 
 
-  return (
-      <motion.group ref={ref} dispose={null}>
-        <mesh
-            geometry={nodes.Cube001.geometry}
-            material={materials['Default OBJ']}
-            scale={0.012756}
-        />
-      </motion.group>
-  );
+    
+    const createOrbitLine = () => {
+        const orbitPoints = [];
+        const numPoints = 100;
+
+        for (let i = 0; i <= numPoints; i++) {
+            const angle = (i / numPoints) * Math.PI * 2;
+            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+
+            const x = distance * Math.cos(angle);
+            const z = distance * Math.sin(angle) * Math.cos(inclination);
+            const y = distance * Math.sin(angle) * Math.sin(inclination);
+
+            orbitPoints.push(new THREE.Vector3(x, y, z));
+        }
+
+        return new THREE.BufferGeometry().setFromPoints(orbitPoints);
+    };
+
+    const orbitGeometry = createOrbitLine();
+    const orbitMaterial = new THREE.LineBasicMaterial({color: 0x3399ff});
+    const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
+
+    useEffect(() => {
+        const scene = ref.current.parent;
+        scene.add(orbitLine);
+        return () => {
+            scene.remove(orbitLine);
+        };
+    }, [orbitLine]);
+
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime();
+        const trueAnomaly = speed * time;
+
+        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+
+        const x = distance * Math.cos(trueAnomaly);
+        const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
+        const y = distance * Math.sin(trueAnomaly) * Math.sin(inclination);
+
+        if (ref.current) {
+            ref.current.position.set(x, y, z);
+        }
+    });
+
+    return (
+        <group ref={ref} dispose={null}>
+            <mesh
+                geometry={nodes.Cube001.geometry}
+                material={materials['Default OBJ']}
+                position={[0, 0, 0]}
+                scale={0.012756} 
+            />
+        </group>
+    );
 };
 
 export default Earth;

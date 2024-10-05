@@ -19,23 +19,13 @@ export default function App() {
   const [section, setSection] = useState(0);
 
   return (
-    <div className="h-screen">
-      <Canvas
-        camera={{ position: [0,0, 400], near: 0.1, far: 10000 }}
-      >
-        <ScrollControls pages={2} damping={0.1}>
-          <ScrollManager section={section} setSection={setSection} />
-
-          <ambientLight intensity={5} />
-          <pointLight
-            position={[0, 0, 600]}
-            intensity={1000}
-            distance={10000}
-            decay={2}
-            color="white"
-            castShadow
-          />
-          <color attach="background" args={["#000000"]} />
+      <div className="h-screen">
+        <Canvas camera={{ position: [0, 0, 400], fov: 75, near: 0.1, far: 100000 }}>
+          <ScrollControls pages={2} damping={0.1}>
+            <ScrollManager section={section} setSection={setSection}/>
+            <ambientLight intensity={4}/>
+            <pointLight position={[0, 0, 0]} intensity={10} distance={10000} color="#ffffff"/>
+            <color attach="background" args={["#000000"]}/>
 
           <Stars
             radius={80}
