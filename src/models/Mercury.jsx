@@ -50,5 +50,4 @@ const Mercury = () => {
 >>>>>>> 3b39ef6 (fix: home amination)
     );
 };
-
 export default Mercury;

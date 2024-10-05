@@ -15,7 +15,6 @@ import { Interface } from "./components/Interface";
 import Jupiter from "./models/Jupiter";
 import Saturn from "./models/Saturn";
 import Neptune from "./models/Neptune";
-
 export default function App() {
   const [section, setSection] = useState(0);
 
