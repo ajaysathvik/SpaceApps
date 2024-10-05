@@ -4,7 +4,7 @@ import VenusModel from "../assets/3d/Venus.glb";
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Venus = ({ section }) => {
+const Venus = (props) => {
     const { nodes, materials } = useGLTF(VenusModel);
 
     const ref = useRef();
@@ -23,10 +23,10 @@ const Venus = ({ section }) => {
     });
 
     return (
-        <motion.group ref={ref} dispose={null}>
+        <motion.group {...props} ref={ref} dispose={null}>
             <mesh
                 geometry={nodes.cylindrically_mapped_sphere.geometry}
-                material={materials['"Default OBJ.001']}
+                material={materials['Default OBJ.001']}
                 scale={0.12104}
             />
         </motion.group>

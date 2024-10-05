@@ -19,7 +19,7 @@ const SolarSystem = ({ section }) => {
             <Mars position={[0, 0, 0]}  />
             <Jupiter position={[0, 0, 0]}  />
             <Saturn position={[0, 0, 0]} />
-            {/*<Uranus position={[180, 0, 0]} />*/}
+            <Uranus position={[180, 0, 0]} />
             <Neptune position={[0, 0, 0]} />
         </>
     );

@@ -27,17 +27,17 @@ const Saturn = (props) => {
             <mesh
                 geometry={nodes.Saturn001.geometry}
                 material={materials.None}
-                scale={[0.120536, 0.120536, 0.120536]} // Apply scale
+                scale={[0.120536, 0.120536, 0.120536]}
             />
             <mesh
                 geometry={nodes.RingsTop.geometry}
                 material={materials.SaturnRings}
-                scale={[0.120536, 0.120536, 0.120536]} // Apply scale
+                scale={[0.120536, 0.120536, 0.120536]}
             />
             <mesh
                 geometry={nodes.RingsBottom.geometry}
                 material={materials.SaturnRings}
-                scale={[0.120536, 0.120536, 0.120536]} // Apply scale
+                scale={[0.120536, 0.120536, 0.120536]}
             />
         </motion.group>
     );

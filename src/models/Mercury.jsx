@@ -25,7 +25,7 @@ const Mercury = ({ section }) => {
         <motion.group ref={ref} dispose={null}>
             <mesh
                 geometry={nodes.Cube008.geometry}
-                material={materials['Default OBJ']}
+                material={materials['Default OBJ.005']}
                 scale={0.04879}
             />
         </motion.group>
