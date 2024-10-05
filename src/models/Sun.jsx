@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React, {useRef} from 'react';
+import {useGLTF} from '@react-three/drei';
 import Sun from '../assets/3d/sun.glb';
 
 const SunModel = (props) => {
-    const { nodes, materials } = useGLTF(Sun);
+    const {nodes, materials} = useGLTF(Sun);
     const lightRef = useRef();
 
     return (
@@ -12,7 +12,7 @@ const SunModel = (props) => {
                 geometry={nodes.Cube001.geometry}
                 material={materials.None}
                 scale={600}
-                castShadow // Enable casting shadows
+                castShadow
             />
             <pointLight
                 ref={lightRef}
@@ -21,7 +21,7 @@ const SunModel = (props) => {
                 decay={2}
                 position={[0, 0, 0]}
                 castShadow
-                shadow-bias={-1} // Adjust this value to reduce shadow artifacts
+                shadow-bias={-1} 
             />
         </group>
     );

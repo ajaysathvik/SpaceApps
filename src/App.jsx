@@ -12,7 +12,7 @@ export default function App() {
 
   return (
       <div className="h-screen">
-        <Canvas camera={{ position: [0, 0, 400], fov: 75, near: 0.1, far: 10000 }}>
+        <Canvas camera={{ position: [0, 0, 400], fov: 75, near: 0.1, far: 100000 }}>
           <ScrollControls pages={2} damping={0.1}>
             <ScrollManager section={section} setSection={setSection}/>
             <ambientLight intensity={4}/>
