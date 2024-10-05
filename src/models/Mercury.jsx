@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import MercuryModel from "../assets/3d/Mercury.glb"
 
 const Mercury=(props)=> {
-  const { nodes, materials } = useGLTF('/Mercury.glb')
+  const { nodes, materials } = useGLTF(MercuryModel)
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -15,5 +16,5 @@ const Mercury=(props)=> {
   )
 }
 
-useGLTF.preload('/Mercury.glb');
+
 export default Mercury;

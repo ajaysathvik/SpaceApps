@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Scroll, Stars } from "@react-three/drei";
+import Solar from "./models/Solar"
 
 import Earth from "./models/Earth";
 import { ScrollManager } from "./components/ScrollManager";
 import { Interface } from "./components/Interface";
-import Jupiter from "./models/Jupiter";
-import Saturn from "./models/Saturn";
-import Neptune from "./models/Neptune";
+
 export default function App() {
   const [section, setSection] = useState(0);
 
   return (
     <div className="h-screen">
-      <Canvas camera={{ position: [0, 0, 600], fov: 75, near: 0.1, far: 10000 }}>
+       <Canvas
+        camera={{ position: [0, 0, 200], fov: 50, near: 0.1, far: 10000 }} // Adjust camera position and FOV
+      >
         <ScrollControls pages={2} damping={0.1}>
           <ScrollManager section={section} setSection={setSection} />
           
@@ -35,13 +36,19 @@ export default function App() {
          
           <Scroll>
 
-          <Earth position={[0, -1000, 200]} section={section} scale={[1.5, 1.5, 1.5]} />
+          {/* <Solar position={[0, -1000, 200]} scale={[1.5, 1.5, 1.5]} /> */}
           <Scroll html>
             <Interface/>
           </Scroll>
           </Scroll>
         </ScrollControls>
-        
+        <OrbitControls
+          enableZoom={true}
+          minDistance={100}    // Minimum zoom distance for better visibility
+          maxDistance={500}    // Maximum zoom distance
+          zoomSpeed={0.8}      // Adjust zoom speed for smoother control
+        />
+
         
       </Canvas>
     </div>
