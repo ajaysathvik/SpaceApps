@@ -29,7 +29,7 @@ const SolarSystem = () => {
   const solarSystemPosition = [0, -500, 0]
   
   useFrame(() => {
-    
+    //aminating the solar system
     if (groupRef.current) {
       const zPosition = -100 + scroll.offset * -800
       if(scroll.offset <0.8){
