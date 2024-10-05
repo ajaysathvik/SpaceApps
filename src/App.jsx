@@ -37,17 +37,6 @@ export default function App() {
           />
           <color attach="background" args={["#000000"]} />
 
-<<<<<<< HEAD
-            {/*<Stars*/}
-            {/*    radius={80}*/}
-            {/*    depth={3000}*/}
-            {/*    count={10000}*/}
-            {/*    factor={100}*/}
-            {/*    saturation={5}*/}
-            {/*    fade*/}
-            {/*    speed={0.1}*/}
-            {/*/>*/}
-=======
           <Stars
             radius={80}
             depth={3000}
@@ -57,18 +46,14 @@ export default function App() {
             fade
             speed={0.1}
           />
->>>>>>> 3b39ef6 (fix: home amination)
 
-
-         
-<OrbitControls
-          enableZoom={false}
-          
-        
-        />x
- <SolarSystem section={section} />
-            <Scroll html>
-              <Interface />
+            <Scroll>
+              <SolarSystem section={section}/>
+              <OrbitControls/>
+              <CameraControls></CameraControls>
+              <Scroll html>
+                <Interface/>
+              </Scroll>
             </Scroll>
          
         </ScrollControls>
