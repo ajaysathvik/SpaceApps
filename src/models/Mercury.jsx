@@ -1,34 +1,45 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
-import MuercuryModel from "../assets/3d/Mercury.glb";
-import { motion } from 'framer-motion-3d';
+import MercuryModel from "../assets/3d/Mercury.glb";
 import { useFrame } from '@react-three/fiber';
+import { calculateOrbitParameters, createOrbitGeometry, updatePlanetPosition } from '../utils/OrbitFuncs'; // Adjust the path as needed
+import * as THREE from 'three';
 
-const Mercury = ({ section }) => {
-    const { nodes, materials } = useGLTF(MuercuryModel);
+const Mercury = () => {
+    const { nodes, materials } = useGLTF(MercuryModel);
     const ref = useRef();
 
-    const orbitRadius = 500;
-    const speed = 0.02;
+    // Mercury's orbital parameters
+    const perihelion = 4.60;
+    const aphelion = 6.98;
+    const eccentricity = 0.206;
+
+    // Calculate semi-major and semi-minor axes
+    const { semiMajorAxis, semiMinorAxis } = calculateOrbitParameters(perihelion, aphelion, eccentricity);
+    const speed = 2;
+
+    // Create orbit geometry
+    const orbitGeometry = createOrbitGeometry(semiMajorAxis, semiMinorAxis);
+    const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xffff99 });
+    const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
+
+    useEffect(() => {
+        ref.current.add(orbitLine); // Add orbit line to the scene
+    }, []);
 
     useFrame((state) => {
-        const time = state.clock.getElapsedTime();
-        const x = orbitRadius * Math.cos(time * speed);
-        const z = orbitRadius * Math.sin(time * speed);
-
-        if (ref.current) {
-            ref.current.position.set(x, 0, z);
-        }
+        updatePlanetPosition(ref, semiMajorAxis, semiMinorAxis, speed, state.clock.getElapsedTime());
     });
 
     return (
-        <motion.group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null}>
             <mesh
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
+                position={[0, 0, 0]}
                 scale={0.004879}
             />
-        </motion.group>
+        </group>
     );
 };
 

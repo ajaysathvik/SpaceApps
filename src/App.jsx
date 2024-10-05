@@ -22,15 +22,15 @@ export default function App() {
             <ambientLight intensity={4} />
             <color attach="background" args={["#000000"]} />
 
-            <Stars
-                radius={80}
-                depth={3000}
-                count={10000}
-                factor={100}
-                saturation={5}
-                fade
-                speed={0.1}
-            />
+            {/*<Stars*/}
+            {/*    radius={80}*/}
+            {/*    depth={3000}*/}
+            {/*    count={10000}*/}
+            {/*    factor={100}*/}
+            {/*    saturation={5}*/}
+            {/*    fade*/}
+            {/*    speed={0.1}*/}
+            {/*/>*/}
 
             <Scroll>
               <SolarSystem section={section} />

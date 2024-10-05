@@ -13,13 +13,13 @@ const SolarSystem = ({ section }) => {
     return (
         <>
             <SunModel position={[0, 0, 0]} />
-            <Mercury position={[0, 0, 0]} />
+            <Mercury/>
             <Venus position={[0, 0, 0]}  />
             <Earth position={[0, 0, 0]} />
             <Mars position={[0, 0, 0]}  />
             <Jupiter position={[0, 0, 0]}  />
             <Saturn position={[0, 0, 0]} />
-            <Uranus position={[180, 0, 0]} />
+            <Uranus position={[0, 0, 0]} />
             <Neptune position={[0, 0, 0]} />
         </>
     );
