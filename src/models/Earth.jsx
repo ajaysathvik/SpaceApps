@@ -3,9 +3,9 @@ import { useGLTF } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 import earth from '../assets/3d/Earth.glb';
-const Earth = ({ section }) => {
+const Earth = (props) => {
   const { nodes, materials } = useGLTF(earth);
-  const ref = useRef();
+  const ref = props.earthRef;
 
   const orbitRadius = 700;
   const speed = 0.02;

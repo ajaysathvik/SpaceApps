@@ -6,7 +6,7 @@ import { motion } from 'framer-motion-3d';
 
 const Saturn = (props) => {
     const { nodes, materials } = useGLTF(SaturnsModel);
-    const ref = useRef();
+    const ref = props.saturnRef;
 
     // Define orbiting properties
     const orbitRadius = 1500;

@@ -4,9 +4,9 @@ import MarsModel from "../assets/3d/Mars.glb";
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Mars = ({ section }) => {
+const Mars = (props ) => {
     const { nodes, materials } = useGLTF(MarsModel);
-    const ref = useRef();
+    const ref = props.marsRef; 
 
     const orbitRadius = 800;
     const speed = 0.02;

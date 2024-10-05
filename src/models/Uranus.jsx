@@ -16,7 +16,7 @@ const Uranus = (props) => {
         return null;
     }
 
-    const ref = useRef();
+    const ref = props.uranusRef;
 
     const orbitRadius = 1600;
     const speed = 0.02;

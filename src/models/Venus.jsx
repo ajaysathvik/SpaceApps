@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber';
 const Venus = (props) => {
     const { nodes, materials } = useGLTF(VenusModel);
 
-    const ref = useRef();
+    const ref = props.venusRef;
 
     const orbitRadius = 600;
     const speed = 0.02;

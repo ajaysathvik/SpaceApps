@@ -4,9 +4,9 @@ import NeptuneModel from "../assets/3d/Neptune.glb";
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Neptune = ({ section }) => {
+const Neptune = (props) => {
     const { nodes, materials } = useGLTF(NeptuneModel);
-    const ref = useRef();
+    const ref = props.neptuneRef;
 
     const orbitRadius = 2000;
     const speed = 0.02;

@@ -4,7 +4,7 @@ import JupiterModel from "../assets/3d/Jupiter.glb"; // Adjust this path if need
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Jupiter = ({ section }) => {
+const Jupiter = (props) => {
     let nodes, materials;
 
     try {
@@ -17,7 +17,7 @@ const Jupiter = ({ section }) => {
         return null;
     }
 
-    const ref = useRef();
+    const ref = props.jupiterRef;
 
     // Define orbiting properties
     const orbitRadius = 1000;
