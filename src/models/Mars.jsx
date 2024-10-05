@@ -8,7 +8,7 @@ const Mars = ({ section }) => {
     const { nodes, materials } = useGLTF(MarsModel);
     const ref = useRef();
 
-    const orbitRadius = 1500;
+    const orbitRadius = 200;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -24,8 +24,8 @@ const Mars = ({ section }) => {
     return (
         <motion.group ref={ref} dispose={null}>
             <mesh
-                geometry={nodes.Cube001.geometry}
-                material={materials['Default OBJ']}
+                geometry={nodes.Cube008.geometry}
+                material={materials['Default OBJ.005']}
             />
         </motion.group>
     );

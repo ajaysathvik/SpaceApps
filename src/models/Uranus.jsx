@@ -1,14 +1,25 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import NeptuneModel from "../assets/3d/Neptune.glb";
+import UranusModel from "../assets/3d/Uranus.glb"; // Adjust this path if needed
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Neptune = ({ section }) => {
-    const { nodes, materials } = useGLTF(NeptuneModel);
+const Uranus = ({ section }) => {
+    let nodes, materials;
+
+    try {
+        const result = useGLTF(UranusModel);
+        nodes = result.nodes;
+        materials = result.materials;
+    } catch (error) {
+        console.error('Error loading GLTF:', error);
+        return null;
+    }
+
     const ref = useRef();
 
-    const orbitRadius = 2500;
+    // Define orbiting properties
+    const orbitRadius = 3000;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -24,11 +35,10 @@ const Neptune = ({ section }) => {
     return (
         <motion.group ref={ref} dispose={null}>
             <mesh
-                geometry={nodes.Neptune.geometry}
-                material={materials['Default OBJ.001']}
-            />
+                geometry={nodes.Uranus.geometry}
+                material={materials['Default OBJ.001']}/>
         </motion.group>
     );
 };
 
-export default Neptune;
+export default Uranus;

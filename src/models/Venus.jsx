@@ -6,9 +6,10 @@ import { useFrame } from '@react-three/fiber';
 
 const Venus = ({ section }) => {
     const { nodes, materials } = useGLTF(VenusModel);
+
     const ref = useRef();
 
-    const orbitRadius = 1500;
+    const orbitRadius = 3500;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -24,8 +25,8 @@ const Venus = ({ section }) => {
     return (
         <motion.group ref={ref} dispose={null}>
             <mesh
-                geometry={nodes.Cube001.geometry}
-                material={materials['Default OBJ']}
+                geometry={nodes.cylindrically_mapped_sphere.geometry}
+                material={materials['"Default OBJ.001']}
             />
         </motion.group>
     );

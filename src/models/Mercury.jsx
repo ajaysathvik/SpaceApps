@@ -8,7 +8,7 @@ const Mercury = ({ section }) => {
     const { nodes, materials } = useGLTF(MuercuryModel);
     const ref = useRef();
 
-    const orbitRadius = 1500;
+    const orbitRadius = 500;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -24,7 +24,7 @@ const Mercury = ({ section }) => {
     return (
         <motion.group ref={ref} dispose={null}>
             <mesh
-                geometry={nodes.Cube001.geometry}
+                geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ']}
             />
         </motion.group>
