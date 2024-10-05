@@ -7,7 +7,7 @@ const Earth = ({ section }) => {
   const { nodes, materials } = useGLTF(earth);
   const ref = useRef();
 
-  const orbitRadius = 1500;
+  const orbitRadius = 700;
   const speed = 0.02;
 
   useFrame((state) => {
@@ -25,6 +25,7 @@ const Earth = ({ section }) => {
         <mesh
             geometry={nodes.Cube001.geometry}
             material={materials['Default OBJ']}
+            scale={0.012756}
         />
       </motion.group>
   );

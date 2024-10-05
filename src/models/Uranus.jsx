@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import UranusModel from "../assets/3d/Uranus.glb"; // Adjust this path if needed
+import UranusModel from "../assets/3d/Uranus.glb";
 import { motion } from 'framer-motion-3d';
 import { useFrame } from '@react-three/fiber';
 
-const Uranus = ({ section }) => {
+const Uranus = (props) => {
     let nodes, materials;
 
     try {
@@ -18,8 +18,7 @@ const Uranus = ({ section }) => {
 
     const ref = useRef();
 
-    // Define orbiting properties
-    const orbitRadius = 3000;
+    const orbitRadius = 1600;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -33,10 +32,12 @@ const Uranus = ({ section }) => {
     });
 
     return (
-        <motion.group ref={ref} dispose={null}>
+        <motion.group {...props} ref={ref} dispose={null}>
             <mesh
                 geometry={nodes.Uranus.geometry}
-                material={materials['Default OBJ.001']}/>
+                material={materials['Default OBJ.001']}
+                scale={0.051118}
+            />
         </motion.group>
     );
 };
