@@ -12,7 +12,9 @@ export default function App() {
   const [section, setSection] = useState(0);
 
   return (
+    
     <div className="h-screen">
+    
       <Canvas camera={{ position: [0, 0, 600], fov: 75, near: 0.1, far: 10000 }}>
         <ScrollControls pages={2} damping={0.1}>
           <ScrollManager section={section} setSection={setSection} />
@@ -31,7 +33,7 @@ export default function App() {
             fade 
             speed={0.1}
           />
-          
+
          
           <Scroll>
 
@@ -47,3 +49,4 @@ export default function App() {
     </div>
   );
 }
+
