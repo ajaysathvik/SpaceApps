@@ -9,7 +9,7 @@ const Venus = ({ section }) => {
 
     const ref = useRef();
 
-    const orbitRadius = 3500;
+    const orbitRadius = 600;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -27,6 +27,7 @@ const Venus = ({ section }) => {
             <mesh
                 geometry={nodes.cylindrically_mapped_sphere.geometry}
                 material={materials['"Default OBJ.001']}
+                scale={0.12104}
             />
         </motion.group>
     );

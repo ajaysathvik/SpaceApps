@@ -19,7 +19,7 @@ const Uranus = ({ section }) => {
     const ref = useRef();
 
     // Define orbiting properties
-    const orbitRadius = 3000;
+    const orbitRadius = 1600;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -37,6 +37,7 @@ const Uranus = ({ section }) => {
             <mesh
                 geometry={nodes.Uranus.geometry}
                 material={materials['Default OBJ.001']}/>
+                scale={0.000051118}
         </motion.group>
     );
 };

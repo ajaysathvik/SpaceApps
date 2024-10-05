@@ -12,16 +12,15 @@ import Saturn from "./Saturn.jsx";
 const SolarSystem = ({ section }) => {
     return (
         <>
-            <SunModel position={[0, 0, 0]}/>
-            <Earth section={section}/>
-            <Uranus position={[500,500,500]}/>
-            <Jupiter position={[500,500,500]}/>
-            <Mercury position={[1500,1500,1500]} />
-            <Venus position={[1500,1500,1500]}/>
-            <Mars position={[1500,1500,1500]}/>
-            <Neptune position={[2000,2000,2000]}/>
-            <Saturn position={[2000,2000,2000]}/>
-
+            <SunModel position={[0, 0, 0]} />
+            <Mercury position={[0, 0, 0]} />
+            <Venus position={[0, 0, 0]}  />
+            <Earth position={[0, 0, 0]} />
+            <Mars position={[0, 0, 0]}  />
+            <Jupiter position={[0, 0, 0]}  />
+            <Saturn position={[0, 0, 0]} />
+            {/*<Uranus position={[180, 0, 0]} />*/}
+            <Neptune position={[0, 0, 0]} />
         </>
     );
 };

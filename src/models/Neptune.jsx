@@ -8,7 +8,7 @@ const Neptune = ({ section }) => {
     const { nodes, materials } = useGLTF(NeptuneModel);
     const ref = useRef();
 
-    const orbitRadius = 2500;
+    const orbitRadius = 2000;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -26,6 +26,7 @@ const Neptune = ({ section }) => {
             <mesh
                 geometry={nodes.Neptune.geometry}
                 material={materials['Default OBJ.001']}
+                scale={0.049528}
             />
         </motion.group>
     );

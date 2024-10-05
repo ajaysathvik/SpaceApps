@@ -19,12 +19,11 @@ export default function App() {
           <ScrollControls pages={2} damping={0.1}>
             <ScrollManager section={section} setSection={setSection} />
 
-            <ambientLight intensity={10} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
+            <ambientLight intensity={4} />
             <color attach="background" args={["#000000"]} />
 
             <Stars
-                radius={800}
+                radius={80}
                 depth={3000}
                 count={10000}
                 factor={100}

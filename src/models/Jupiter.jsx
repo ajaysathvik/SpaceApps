@@ -20,7 +20,7 @@ const Jupiter = ({ section }) => {
     const ref = useRef();
 
     // Define orbiting properties
-    const orbitRadius = 2000;
+    const orbitRadius = 1000;
     const speed = 0.02;
 
     useFrame((state) => {
@@ -38,6 +38,7 @@ const Jupiter = ({ section }) => {
             <mesh
                 geometry={nodes.cubemap.geometry}
                 material={nodes.cubemap.material}
+                scale={0.142984}
             />
         </motion.group>
     );
