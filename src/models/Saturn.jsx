@@ -6,7 +6,6 @@ const Saturn =(props) =>{
   return (
     <group {...props} dispose={null}>
       <mesh
-
         geometry={nodes.Saturn001.geometry}
         material={materials.None}
       />

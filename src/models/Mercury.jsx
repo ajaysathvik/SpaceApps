@@ -30,5 +30,4 @@ const Mercury = ({ section }) => {
         </motion.group>
     );
 };
-
 export default Mercury;
