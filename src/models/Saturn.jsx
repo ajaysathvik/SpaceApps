@@ -3,6 +3,7 @@ import {useGLTF} from '@react-three/drei';
 import SaturnModel from '../assets/3d/Saturn.glb'; 
 import {useFrame} from "@react-three/fiber";
 import * as THREE from 'three';
+import SaturnsModel from '../assets/3d/Saturn.glb';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 

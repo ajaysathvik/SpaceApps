@@ -7,7 +7,7 @@ import * as THREE from 'three';
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
 
-const Venus = () => {
+const Venus = (props) => {
     const {nodes, materials} = useGLTF(VenusModel);
      const ref = props.venusRef;
 

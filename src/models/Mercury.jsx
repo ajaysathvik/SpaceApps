@@ -9,7 +9,7 @@ import * as THREE from 'three';
 
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
 
-const Mercury = () => {
+const Mercury = (props) => {
     const {nodes, materials} = useGLTF(MercuryModel);
        const ref = props.mercuryRef;
 
