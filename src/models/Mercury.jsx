@@ -26,7 +26,7 @@ const Mercury = ({ section }) => {
             <mesh
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
-                scale={0.04879}
+                scale={0.004879}
             />
         </motion.group>
     );

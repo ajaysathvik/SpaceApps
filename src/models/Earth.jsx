@@ -25,7 +25,7 @@ const Earth = ({ section }) => {
         <mesh
             geometry={nodes.Cube001.geometry}
             material={materials['Default OBJ']}
-            scale={0.12756}
+            scale={0.012756}
         />
       </motion.group>
   );

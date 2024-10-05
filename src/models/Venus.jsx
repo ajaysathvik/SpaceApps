@@ -27,7 +27,7 @@ const Venus = (props) => {
             <mesh
                 geometry={nodes.cylindrically_mapped_sphere.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.12104}
+                scale={0.012104}
             />
         </motion.group>
     );

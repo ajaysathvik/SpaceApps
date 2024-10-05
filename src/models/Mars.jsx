@@ -26,7 +26,7 @@ const Mars = ({ section }) => {
             <mesh
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
-                scale={0.06792}
+                scale={0.006792}
             />
         </motion.group>
     );
