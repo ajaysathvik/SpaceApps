@@ -91,7 +91,7 @@ x
         </div>
       </Section>
       <Section>
-        <div className="w-full h-full flex justify-end items-end">
+        <div className="w-full h-full flex justify-end items-end mb-[40vh]">
           <div className="flex flex-row w-full justify-center pt-10">
             {myList}
           </div>
