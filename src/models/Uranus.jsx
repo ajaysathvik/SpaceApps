@@ -65,11 +65,11 @@ const Uranus = (props) => {
     });
 
     return (
-        <group {...props} ref={ref} dispose={null}>
+        <group {...props} ref={ref} dispose={null} scale={0.051118 * (scaleFactor)**3}>
             <mesh
                 geometry={nodes.Uranus.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.051118 * (scaleFactor)**3}
+                
             />
         </group>
     );

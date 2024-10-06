@@ -65,12 +65,12 @@ const Earth = (props) => {
     });
 
     return (
-        <group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null} scale={0.012756 * (scaleFactor)**2}>
             <mesh
                 geometry={nodes.Cube001.geometry}
                 material={materials['Default OBJ']}
                 position={[0, 0, 0]}
-                scale={0.012756 * (scaleFactor)**2}
+                
             />
         </group>
     );

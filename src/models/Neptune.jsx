@@ -66,11 +66,11 @@ const Neptune = (props) => {
     });
 
     return (
-        <group ref={ref} {...props} dispose={null}>
+        <group ref={ref} {...props} dispose={null} scale={0.049528 * (scaleFactor)**0.8}>
             <mesh
                 geometry={nodes.Neptune.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.049528 * (scaleFactor)**0.8}
+                
             />
         </group>
     );
