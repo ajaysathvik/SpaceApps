@@ -1,16 +1,20 @@
+import { useFrame ,useThree} from '@react-three/fiber';
+import React,{useState} from 'react';
 import { TiMediaRecord } from "react-icons/ti";
-import {useState} from "react";
 
-const Section = (props) => {
-  const { children } = props;
-  return (
-    <section className="h-screen w-screen max-w-screen mx-auto pt-32 flex flex-col items-start text-white">
-      {children}
-    </section>
-  );
-};
+
+import * as THREE from 'three';
+
+
+
+const Section = ({ children }) => (
+  <section className="h-screen w-screen max-w-screen mx-auto pt-32 flex flex-col items-start text-white">
+    {children}
+  </section>
+);
 
 export const Interface = (props) => {
+  const { camera } = useThree();
   const {
     sunRef,
     mercuryRef,
@@ -22,6 +26,7 @@ export const Interface = (props) => {
     uranusRef,
     neptuneRef,
   } = props;
+x
   const handleClick = (ref) => {
     if (ref.current) {
       // Set the camera position to the planet's position
@@ -35,6 +40,7 @@ export const Interface = (props) => {
   const toggleOrbitLines = () => {
     setOrbitVisible((prev) => !prev);
   };
+
   const planets = [
     { name: "Sun", ref: sunRef },
     { name: "Mercury", ref: mercuryRef },
@@ -46,14 +52,25 @@ export const Interface = (props) => {
     { name: "Uranus", ref: uranusRef },
     { name: "Neptune", ref: neptuneRef },
   ];
+  const [active, setActive] = useState(planets[0].ref);
+  useFrame(() => {
+    const { x, y, z } = active.current.position;
+
+    
+    camera.position.set(x , y+20 , z-850 ); 
+    // camera.lookAt(active.current.position); 
+  });
+
+  console.log(active);
 
   const myList = planets.map(({ name, ref }) => (
+
       <div
           key={name}
           className="group pl-10 flex flex-col justify-center items-center transition duration-300"
-          onClick={() => {
-            console.log(ref.current.position);
-          }}
+         
+            onClick={() => setActive(ref)}
+         
       >
         <TiMediaRecord className="text-4xl group-hover:text-6xl transition duration-300"/>
         <p className="text-lg group-hover:text-2xl transition duration-300">
@@ -63,6 +80,7 @@ export const Interface = (props) => {
           {orbitVisible ? "Hide Orbit Lines" : "Show Orbit Lines"}
         </button>
       </div>
+
   ));
 
   return (
