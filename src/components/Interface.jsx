@@ -2,6 +2,14 @@ import { useFrame, useThree } from '@react-three/fiber';
 import React, { useState } from 'react';
 import { TiMediaRecord } from "react-icons/ti";
 import Planet from './Planet';
+import Title from './Title';
+
+
+
+import * as THREE from 'three';
+
+
+
 
 const Section = ({ children }) => (
   <section className="h-screen w-screen max-w-screen mx-auto pt-32 flex flex-col items-start text-white">
@@ -154,10 +162,14 @@ export const Interface = (props) => {
   ));
 
   return (
-    <>
-      <Section>
-        <div className="flex items-center w-full justify-center">
-          <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
+
+
+      <>
+        <Section>
+          <div className="flex items-center w-full justify-center">
+            {/* <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1> */}
+            <Title />
+
         </div>
       </Section>
       <Section>
