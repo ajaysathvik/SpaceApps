@@ -3,6 +3,10 @@ import { useFrame } from "@react-three/fiber";
 import asteroidData from "../data/b67r-rgxc.json";
 import * as THREE from 'three';
 import ast from '../assets/3d/asteroid.glb';
+import ast1 from '../assets/3d/uploads_files_4462300_Astreoid-1.glb';
+import ast2 from '../assets/3d/uploads_files_4462296_Astreoid-2.glb'
+import ast3 from '../assets/3d/uploads_files_4462272_Astreoid-8.glb'
+
 import { useGLTF, Text } from "@react-three/drei";
 
 const Asteroid = () => {
@@ -95,7 +99,7 @@ const Asteroid = () => {
   });
 
   const handleAsteroidClick = (asteroidInfo) => {
-    setSelectedAsteroid(asteroidInfo);
+    setSelectedAsteroid(asteroidInfo === selectedAsteroid ? null : asteroidInfo);
   };
 
   return (
@@ -107,25 +111,21 @@ const Asteroid = () => {
                   geometry={nodes.itokawa_LP.geometry}
                   material={materials.itokawa}
               />
+              {selectedAsteroid === asteroidInfo && (
+                  <Text
+                      position={[0, 300, 0]} // Adjust the Y position for visibility
+                      fontSize={100} // Adjust size as needed
+                      color="white"
+                      anchorX="center"
+                      anchorY="middle"
+                      renderOrder={1}
+                      depthTest={false}
+                  >
+                    {asteroidInfo.object_name}
+                  </Text>
+              )}
             </group>
         ))}
-        {selectedAsteroid && (
-            <group>
-              <mesh>
-                <boxGeometry args={[5, 2, 0.1]} />
-                <meshBasicMaterial color="white" opacity={0.7} transparent />
-              </mesh>
-              <Text
-                  position={[0,0,0]}
-                  fontSize={200}
-                  color="white"
-                  anchorX="center"
-                  anchorY="middle"
-              >
-                {selectedAsteroid.object_name}
-              </Text>
-            </group>
-        )}
       </>
   );
 };
