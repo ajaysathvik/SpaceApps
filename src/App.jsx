@@ -32,8 +32,8 @@ export default function App() {
           {/* Background Color */}
           <color attach="background" args={["#000000"]} />
 
-          <OrbitControls enableZoom={true}/>
-          <Stars radius={80} depth={3000} count={5000} factor={60} saturation={5} fade speed={0.1} />
+          <OrbitControls enableZoom={false}/>
+          <Stars radius={80} depth={300000} count={20000} factor={5000} saturation={5} fade speed={0.1} />
 
           <SolarSystem
             section={section}

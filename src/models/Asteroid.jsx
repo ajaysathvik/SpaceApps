@@ -95,7 +95,7 @@ const Asteroid = () => {
   });
 
   const handleAsteroidClick = (asteroidInfo) => {
-    setSelectedAsteroid(asteroidInfo);
+    setSelectedAsteroid(asteroidInfo === selectedAsteroid ? null : asteroidInfo);
   };
 
   return (
@@ -107,25 +107,21 @@ const Asteroid = () => {
                   geometry={nodes.itokawa_LP.geometry}
                   material={materials.itokawa}
               />
+              {selectedAsteroid === asteroidInfo && (
+                  <Text
+                      position={[0, 300, 0]} 
+                      fontSize={100}
+                      color="white"
+                      anchorX="center"
+                      anchorY="middle"
+                      renderOrder={1}
+                      depthTest={false}
+                  >
+                    {asteroidInfo.object_name}
+                  </Text>
+              )}
             </group>
         ))}
-        {selectedAsteroid && (
-            <group>
-              <mesh>
-                <boxGeometry args={[5, 2, 0.1]} />
-                <meshBasicMaterial color="white" opacity={0.7} transparent />
-              </mesh>
-              <Text
-                  position={[0,0,0]}
-                  fontSize={200}
-                  color="white"
-                  anchorX="center"
-                  anchorY="middle"
-              >
-                {selectedAsteroid.object_name}
-              </Text>
-            </group>
-        )}
       </>
   );
 };

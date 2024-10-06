@@ -2,14 +2,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import React, { useState } from 'react';
 import { TiMediaRecord } from "react-icons/ti";
 import Planet from './Planet';
-import Title from './Title';
-
-
-
 import * as THREE from 'three';
-
-
-
 
 const Section = ({ children }) => (
   <section className="h-screen w-screen max-w-screen mx-auto pt-32 flex flex-col items-start text-white">
@@ -19,17 +12,7 @@ const Section = ({ children }) => (
 
 export const Interface = (props) => {
   const { camera } = useThree();
-  const {
-    sunRef,
-    mercuryRef,
-    venusRef,
-    earthRef,
-    marsRef,
-    jupiterRef,
-    saturnRef,
-    uranusRef,
-    neptuneRef,
-  } = props;
+  const { sunRef, mercuryRef, venusRef, earthRef, marsRef, jupiterRef, saturnRef, uranusRef, neptuneRef } = props;
 
   const [orbitVisible, setOrbitVisible] = useState(true);
   const toggleOrbitLines = () => {
@@ -121,7 +104,8 @@ export const Interface = (props) => {
   ];
 
   const planets = [
-    { name: "Sun", ref: sunRef, size: 0.8 },
+    { name: "All Planets", ref: null, size: 0 },
+    { name: "Sun", ref: sunRef, size: 0.9 },
     { name: "Mercury", ref: mercuryRef, size: -800 },
     { name: "Venus", ref: venusRef, size: 50 },
     { name: "Earth", ref: earthRef, size: 50 },
@@ -132,19 +116,26 @@ export const Interface = (props) => {
     { name: "Neptune", ref: neptuneRef, size: -150 },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0); // Store active index
+  const [activeIndex, setActiveIndex] = useState(1); // Store active index
 
   useFrame(() => {
     const activePlanet = planets[activeIndex].ref;
+    if (activeIndex === 0) {
+      // Reset camera position for All Planets
+      camera.position.set(0, -180, 500);
+      camera.lookAt(0, 0, 0);
+      return;
+    }
+
     if (activePlanet && activePlanet.current) {
       const { x, y, z } = activePlanet.current.position;
       const size = activePlanet.current.scale.x;
 
       const baseDistance = 100;
-      const zoomFactor = planets[activeIndex].size; // Now correctly using index
+      const zoomFactor = planets[activeIndex].size;
       const adjustedDistance = baseDistance + size * zoomFactor;
 
-      camera.position.set(x, y , z + adjustedDistance);
+      camera.position.set(x, y, z + adjustedDistance);
       camera.lookAt(activePlanet.current.position);
     }
   });
@@ -157,30 +148,24 @@ export const Interface = (props) => {
     >
       <TiMediaRecord className="text-4xl group-hover:text-6xl transition duration-300" />
       <p className="text-lg group-hover:text-2xl transition duration-300">{name}</p>
-      
     </div>
   ));
 
   return (
-
-
-      <>
-        <Section>
-          <div className="flex items-center w-full justify-center">
-            <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
-            {/* <Title /> */}
-
+    <>
+      <Section>
+        <div className="flex items-center w-full justify-center">
+          <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
         </div>
       </Section>
       <Section>
         <div className="w-full h-full flex flex-col justify-end items-end">
-          <Planet rightContent= {planetsData[activeIndex]}  />
+          <Planet rightContent={planetsData[activeIndex]} />
           <div className="flex flex-row w-full justify-center pt-10">
             {myList}
           </div>
         </div>
       </Section>
-      
     </>
   );
 };
