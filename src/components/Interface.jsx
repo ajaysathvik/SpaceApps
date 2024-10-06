@@ -121,8 +121,8 @@ export const Interface = (props) => {
   useFrame(() => {
     const activePlanet = planets[activeIndex].ref;
     if (activeIndex === 0) {
-      // Reset camera position for All Planets
-      camera.position.set(0, -180, 500);
+      // Position camera for top view of all planets
+      camera.position.set(0, 10000, 50000);
       camera.lookAt(0, 0, 0);
       return;
     }
@@ -159,8 +159,10 @@ export const Interface = (props) => {
         </div>
       </Section>
       <Section>
-        <div className="w-full h-full flex flex-col justify-end items-end">
-          <Planet rightContent={planetsData[activeIndex]} />
+      <div className="w-full h-full flex flex-col justify-end items-end">
+          {activeIndex !== 0 && planetsData[activeIndex - 1] && (
+            <Planet rightContent={planetsData[activeIndex - 1]} />
+          )}
           <div className="flex flex-row w-full justify-center pt-10">
             {myList}
           </div>
