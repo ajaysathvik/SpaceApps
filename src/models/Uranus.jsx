@@ -14,7 +14,8 @@ const Uranus = (props) => {
     const semiMajorAxis = 28710; 
     const eccentricity = 0.046; 
     const speed = 2 * Math.PI / 30688; 
-    const inclination = degreesToRadians(0.77); 
+    const inclination = degreesToRadians(0.77);
+    const scaleFactor = 2.5;
 
     
     const createOrbitLine = () => {
@@ -24,7 +25,7 @@ const Uranus = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -52,7 +53,7 @@ const Uranus = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -68,7 +69,7 @@ const Uranus = (props) => {
             <mesh
                 geometry={nodes.Uranus.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.051118} 
+                scale={0.051118 * (scaleFactor)**3}
             />
         </group>
     );

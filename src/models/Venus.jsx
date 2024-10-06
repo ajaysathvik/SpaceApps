@@ -11,16 +11,16 @@ const Venus = (props) => {
     const {nodes, materials} = useGLTF(VenusModel);
      const ref = props.venusRef;
 
-    const semiMajorAxis = 108.2; 
-    const eccentricity = 0.007; 
-    const orbitalPeriod = 224.7; 
-    const speed = 2 * Math.PI / orbitalPeriod; 
-    const inclination = degreesToRadians(3.4); 
+    const semiMajorAxis = 108.2;
+    const eccentricity = 0.007;
+    const orbitalPeriod = 224.7;
+    const speed = 2 * Math.PI / orbitalPeriod;
+    const inclination = degreesToRadians(3.4);
 
-    
-    const scaleFactor = 8; 
 
-    
+    const scaleFactor = 50;
+
+
     const createOrbitLine = () => {
         const orbitPoints = [];
         const numPoints = 100;
@@ -71,7 +71,7 @@ const Venus = (props) => {
             <mesh
                 geometry={nodes.cylindrically_mapped_sphere.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.012104} 
+                scale={0.012104 * (scaleFactor)**0.83}
             />
         </group>
     );
