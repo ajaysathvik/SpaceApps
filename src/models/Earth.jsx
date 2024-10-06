@@ -14,16 +14,18 @@ const Earth = (props) => {
     const semiMajorAxis = 1496; 
     const eccentricity = 0.017; 
     const speed = 2 * Math.PI / 365.25; 
-    const inclination = degreesToRadians(0); 
+    const inclination = degreesToRadians(0);
+    const scaleFactor = 6;
 
-    
+
+
     const createOrbitLine = () => {
         const orbitPoints = [];
         const numPoints = 100;
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle)) * scaleFactor;
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -51,7 +53,7 @@ const Earth = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis * scaleFactor*(1 - eccentricity * Math.cos(trueAnomaly)) ;
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -68,7 +70,7 @@ const Earth = (props) => {
                 geometry={nodes.Cube001.geometry}
                 material={materials['Default OBJ']}
                 position={[0, 0, 0]}
-                scale={0.012756} 
+                scale={0.012756 * (scaleFactor)**2}
             />
         </group>
     );

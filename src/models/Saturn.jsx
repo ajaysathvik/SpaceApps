@@ -17,7 +17,8 @@ const Saturn = (props) => {
     const semiMajorAxis = 14394; 
     const eccentricity = 0.056; 
     const speed = 2 * Math.PI / 10759; 
-    const inclination = degreesToRadians(2.5); 
+    const inclination = degreesToRadians(2.5);
+    const scaleFactor = 3.5;
 
     
     const createOrbitLine = () => {
@@ -26,7 +27,7 @@ const Saturn = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -54,7 +55,7 @@ const Saturn = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -70,17 +71,17 @@ const Saturn = (props) => {
             <mesh
                 geometry={nodes.Saturn001.geometry}
                 material={materials.None}
-                scale={[0.120536, 0.120536, 0.120536]}
+                scale={0.120536 * (scaleFactor)**2}
             />
             <mesh
                 geometry={nodes.RingsTop.geometry}
                 material={materials.SaturnRings}
-                scale={[0.120536, 0.120536, 0.120536]}
+                scale={0.120536 * (scaleFactor)**2}
             />
             <mesh
                 geometry={nodes.RingsBottom.geometry}
                 material={materials.SaturnRings}
-                scale={[0.120536, 0.120536, 0.120536]}
+                scale={0.120536 * (scaleFactor)**2}
             />
         </group>
     );

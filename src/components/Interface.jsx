@@ -1,4 +1,5 @@
 import { TiMediaRecord } from "react-icons/ti";
+import {useState} from "react";
 
 const Section = (props) => {
   const { children } = props;
@@ -29,6 +30,11 @@ export const Interface = (props) => {
       camera.lookAt(position); // Make the camera look at the planet
     }
   };
+
+  const [orbitVisible, setOrbitVisible] = useState(true);
+  const toggleOrbitLines = () => {
+    setOrbitVisible((prev) => !prev);
+  };
   const planets = [
     { name: "Sun", ref: sunRef },
     { name: "Mercury", ref: mercuryRef },
@@ -42,25 +48,28 @@ export const Interface = (props) => {
   ];
 
   const myList = planets.map(({ name, ref }) => (
-    <div
-      key={name}
-      className="group pl-10 flex flex-col justify-center items-center transition duration-300"
-      onClick={() => {
-        console.log(ref.current.position);
-      }}
-    >
-      <TiMediaRecord className="text-4xl group-hover:text-6xl transition duration-300" />
-      <p className="text-lg group-hover:text-2xl transition duration-300">
-        {name}
-      </p>
-    </div>
+      <div
+          key={name}
+          className="group pl-10 flex flex-col justify-center items-center transition duration-300"
+          onClick={() => {
+            console.log(ref.current.position);
+          }}
+      >
+        <TiMediaRecord className="text-4xl group-hover:text-6xl transition duration-300"/>
+        <p className="text-lg group-hover:text-2xl transition duration-300">
+          {name}
+        </p>
+        <button onClick={toggleOrbitLines} className="mt-2 p-2 bg-blue-500 rounded">
+          {orbitVisible ? "Hide Orbit Lines" : "Show Orbit Lines"}
+        </button>
+      </div>
   ));
 
   return (
-    <>
-      <Section>
-        <div className="flex items-center w-full justify-center">
-          <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
+      <>
+        <Section>
+          <div className="flex items-center w-full justify-center">
+            <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
         </div>
       </Section>
       <Section>

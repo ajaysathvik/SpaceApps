@@ -16,7 +16,8 @@ const Mars = (props) => {
     const semiMajorAxis = 2279; 
     const eccentricity = 0.093; 
     const speed = 2 * Math.PI / 687; 
-    const inclination = degreesToRadians(1.85); 
+    const inclination = degreesToRadians(1.85);
+    const scaleFactor = 6;
 
     
     const createOrbitLine = () => {
@@ -25,7 +26,7 @@ const Mars = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis * scaleFactor* (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -53,7 +54,7 @@ const Mars = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis * scaleFactor * (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -69,7 +70,7 @@ const Mars = (props) => {
             <mesh
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
-                scale={0.006792} 
+                scale={0.006792 * (scaleFactor)**2}
             />
         </group>
     );

@@ -19,6 +19,7 @@ const Mercury = (props) => {
     const eccentricity = 0.206;
     const speed = 2 * Math.PI / 88;
     const inclination = degreesToRadians(7);
+    const scaleFactor = 5;
 
     
     const createOrbitLine = () => {
@@ -27,7 +28,7 @@ const Mercury = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis * scaleFactor * (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -55,7 +56,7 @@ const Mercury = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis * scaleFactor * (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -74,7 +75,7 @@ const Mercury = (props) => {
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
                 position={[0, 0, 0]}
-                scale={0.004879}
+                scale={0.004879 * (scaleFactor)**2}
 
         
 

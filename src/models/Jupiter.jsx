@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from "react";
 import {useGLTF} from "@react-three/drei";
-import JupiterModel from "../assets/3d/Jupiter.glb"; 
+import JupiterModel from "../assets/3d/Jupiter.glb";
 import {useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
 const degreesToRadians = (degrees) => (degrees * Math.PI) / 180;
@@ -8,11 +8,12 @@ const Jupiter = (props) => {
     const {nodes, materials} = useGLTF(JupiterModel);
     const ref = props.jupiterRef
 
-    
-    const semiMajorAxis = 7785; 
-    const eccentricity = 0.049; 
-    const speed = 2 * Math.PI / 4331; 
-    const inclination = degreesToRadians(1.3); 
+
+    const semiMajorAxis = 7785;
+    const eccentricity = 0.049;
+    const speed = 2 * Math.PI / 4331;
+    const inclination = degreesToRadians(1.3);
+    const scaleFactor = 4;
 
 
     const createOrbitLine = () => {
@@ -21,7 +22,7 @@ const Jupiter = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -34,7 +35,7 @@ const Jupiter = (props) => {
     };
 
     const orbitGeometry = createOrbitLine();
-    const orbitMaterial = new THREE.LineBasicMaterial({color: 0xffd700}); 
+    const orbitMaterial = new THREE.LineBasicMaterial({color: 0xffd700});
     const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
 
 
@@ -50,7 +51,7 @@ const Jupiter = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -67,8 +68,8 @@ const Jupiter = (props) => {
                 castShadow
                 receiveShadow
                 geometry={nodes.cubemap.geometry}
-                material={materials['Default OBJ']}
-                scale={0.142984} 
+                material={materials.None}
+                scale={0.142984 * (scaleFactor)**2}
             />
         </group>
     );

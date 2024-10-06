@@ -11,7 +11,7 @@ const SunModel=(props)=> {
             
                 geometry={nodes.Cube001.geometry}
                 material={materials.None}
-                scale={600}
+                scale={3000}
                 castShadow
             />
           

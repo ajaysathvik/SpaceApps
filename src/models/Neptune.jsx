@@ -16,7 +16,8 @@ const Neptune = (props) => {
     const semiMajorAxis = 4497.1; 
     const eccentricity = 0.009; 
     const speed = 2 * Math.PI / 60182; 
-    const inclination = degreesToRadians(1.77); 
+    const inclination = degreesToRadians(1.77);
+    const scaleFactor = 20;
 
     
     const createOrbitLine = () => {
@@ -25,7 +26,7 @@ const Neptune = (props) => {
 
         for (let i = 0; i <= numPoints; i++) {
             const angle = (i / numPoints) * Math.PI * 2;
-            const distance = semiMajorAxis * (1 - eccentricity * Math.cos(angle));
+            const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(angle));
 
             const x = distance * Math.cos(angle);
             const z = distance * Math.sin(angle) * Math.cos(inclination);
@@ -53,7 +54,7 @@ const Neptune = (props) => {
         const time = state.clock.getElapsedTime();
         const trueAnomaly = speed * time;
 
-        const distance = semiMajorAxis * (1 - eccentricity * Math.cos(trueAnomaly));
+        const distance = semiMajorAxis *scaleFactor* (1 - eccentricity * Math.cos(trueAnomaly));
 
         const x = distance * Math.cos(trueAnomaly);
         const z = distance * Math.sin(trueAnomaly) * Math.cos(inclination);
@@ -69,7 +70,7 @@ const Neptune = (props) => {
             <mesh
                 geometry={nodes.Neptune.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.049528} 
+                scale={0.049528 * (scaleFactor)**0.8}
             />
         </group>
     );
