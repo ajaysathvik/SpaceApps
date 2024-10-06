@@ -67,11 +67,11 @@ const Venus = (props) => {
     });
 
     return (
-        <group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null} scale={0.012104 * (scaleFactor)**0.83}>
             <mesh
                 geometry={nodes.cylindrically_mapped_sphere.geometry}
                 material={materials['Default OBJ.001']}
-                scale={0.012104 * (scaleFactor)**0.83}
+                
             />
         </group>
     );
