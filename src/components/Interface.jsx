@@ -1,6 +1,7 @@
 import { useFrame ,useThree} from '@react-three/fiber';
 import React,{useState} from 'react';
 import { TiMediaRecord } from "react-icons/ti";
+import Title from './Title';
 
 
 import * as THREE from 'three';
@@ -87,7 +88,8 @@ x
       <>
         <Section>
           <div className="flex items-center w-full justify-center">
-            <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
+            {/* <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1> */}
+            <Title />
         </div>
       </Section>
       <Section>
