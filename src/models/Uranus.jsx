@@ -41,13 +41,7 @@ const Uranus = (props) => {
     const orbitMaterial = new THREE.LineBasicMaterial({color: 0x00bfff}); 
     const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
 
-    useEffect(() => {
-        const scene = ref.current.parent;
-        scene.add(orbitLine);
-        return () => {
-            scene.remove(orbitLine);
-        };
-    }, [orbitLine]);
+
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();

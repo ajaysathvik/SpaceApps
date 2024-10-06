@@ -39,13 +39,7 @@ const Jupiter = (props) => {
     const orbitLine = new THREE.LineLoop(orbitGeometry, orbitMaterial);
 
 
-    useEffect(() => {
-        const scene = ref.current.parent;
-        scene.add(orbitLine);
-        return () => {
-            scene.remove(orbitLine);
-        };
-    }, [orbitLine]);
+
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();

@@ -26,7 +26,7 @@ export const Interface = (props) => {
     uranusRef,
     neptuneRef,
   } = props;
-x
+
   const handleClick = (ref) => {
     if (ref.current) {
       // Set the camera position to the planet's position
@@ -34,11 +34,6 @@ x
       camera.position.set(position.x, position.y, position.z + 5); // Adjust camera position as needed
       camera.lookAt(position); // Make the camera look at the planet
     }
-  };
-
-  const [orbitVisible, setOrbitVisible] = useState(true);
-  const toggleOrbitLines = () => {
-    setOrbitVisible((prev) => !prev);
   };
 
   const planets = [
@@ -57,8 +52,8 @@ x
     const { x, y, z } = active.current.position;
 
     
-    camera.position.set(x , y+20 , z-850 ); 
-    // camera.lookAt(active.current.position); 
+    // camera.position.set(x , y+20 , z-850 );
+    // camera.lookAt(active.current.position);
   });
 
   console.log(active);
@@ -76,9 +71,6 @@ x
         <p className="text-lg group-hover:text-2xl transition duration-300">
           {name}
         </p>
-        <button onClick={toggleOrbitLines} className="mt-2 p-2 bg-blue-500 rounded">
-          {orbitVisible ? "Hide Orbit Lines" : "Show Orbit Lines"}
-        </button>
       </div>
 
   ));
