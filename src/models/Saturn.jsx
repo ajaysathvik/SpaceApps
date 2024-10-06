@@ -61,21 +61,21 @@ const Saturn = (props) => {
     });
 
     return (
-        <group ref={ref} {...props} dispose={null}>
+        <group ref={ref} {...props} dispose={null} scale={0.120536 * (scaleFactor)**2}>
             <mesh
                 geometry={nodes.Saturn001.geometry}
                 material={materials.None}
-                scale={0.120536 * (scaleFactor)**2}
+               
             />
             <mesh
                 geometry={nodes.RingsTop.geometry}
                 material={materials.SaturnRings}
-                scale={0.120536 * (scaleFactor)**2}
+               
             />
             <mesh
                 geometry={nodes.RingsBottom.geometry}
                 material={materials.SaturnRings}
-                scale={0.120536 * (scaleFactor)**2}
+               
             />
         </group>
     );

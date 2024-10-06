@@ -57,7 +57,7 @@ const Jupiter = (props) => {
     });
 
     return (
-        <group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null}  scale={0.142984 * (scaleFactor)**2}>
             <mesh
                 castShadow
                 receiveShadow

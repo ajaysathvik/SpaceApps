@@ -62,15 +62,14 @@ const Mercury = (props) => {
     });
 
     return (
-        <motion.group ref={ref} dispose={null}>
+        <motion.group ref={ref} dispose={null}  scale={0.004879 * (scaleFactor)**2}>
             <mesh
             receiveShadow
             castShadow
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
                 position={[0, 0, 0]}
-                scale={0.004879 * (scaleFactor)**2}
-
+               
         
 
             />

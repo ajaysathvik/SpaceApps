@@ -6,12 +6,12 @@ const SunModel=(props)=> {
     const { nodes, materials } = useGLTF(Sun)
 
     return (
-        <group ref={props.sunRef} {...props} dispose={null}>
+        <group ref={props.sunRef} {...props} dispose={null}  scale={3000}>
             <mesh
             
                 geometry={nodes.Cube001.geometry}
                 material={materials.None}
-                scale={3000}
+               
                 castShadow
             />
           

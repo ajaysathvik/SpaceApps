@@ -1,17 +1,14 @@
-import React, { useRef, useState, useCallback } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import React, { useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Scroll, Stars } from "@react-three/drei";
-import * as THREE from "three";
-import { gsap } from "gsap";
 import SolarSystem from "./models/Solar";
 import { ScrollManager } from "./components/ScrollManager";
 import { Interface } from "./components/Interface";
 
-
 export default function App() {
   const [section, setSection] = useState(0);
 
-  
+  // Create references for each planet
   const sunRef = useRef();
   const mercuryRef = useRef();
   const venusRef = useRef();
@@ -22,21 +19,22 @@ export default function App() {
   const uranusRef = useRef();
   const neptuneRef = useRef();
 
- 
-
   return (
     <div className="h-screen">
+      <Canvas camera={{ position: [0, 0, 400], near: 1, far: 500000 }}>
 
-
-      <Canvas camera={{ position: [0, 0, 2000], near: 0.1, far: 100000 }}>
         <ScrollControls pages={2} damping={0.1}>
           <ScrollManager section={section} setSection={setSection} />
+          {/* Ambient and Point Lights */}
           <ambientLight intensity={5} />
-
-          <pointLight position={[0, 0, 600]} intensity={1000} distance={10000} decay={2} color="white" castShadow />
+          <pointLight position={[0, 0, 600]} intensity={100} distance={10000} decay={2} color="white" castShadow />
+          
+          {/* Background Color */}
           <color attach="background" args={["#000000"]} />
+
           <OrbitControls enableZoom={true}/>
           <Stars radius={80} depth={3000} count={5000} factor={60} saturation={5} fade speed={0.1} />
+
           <SolarSystem
             section={section}
             sunRef={sunRef}
@@ -49,6 +47,8 @@ export default function App() {
             uranusRef={uranusRef}
             neptuneRef={neptuneRef}
           />
+
+          {/* Interface for planet selection */}
           <Scroll html>
             <Interface
               sunRef={sunRef}
@@ -60,7 +60,6 @@ export default function App() {
               saturnRef={saturnRef}
               uranusRef={uranusRef}
               neptuneRef={neptuneRef}
-           
             />
           </Scroll>
         </ScrollControls>

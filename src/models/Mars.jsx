@@ -60,11 +60,11 @@ const Mars = (props) => {
     });
 
     return (
-        <group ref={ref} dispose={null}>
+        <group ref={ref} dispose={null}  scale={0.006792 * (scaleFactor)**2}>
             <mesh
                 geometry={nodes.Cube008.geometry}
                 material={materials['Default OBJ.005']}
-                scale={0.006792 * (scaleFactor)**2}
+               
             />
         </group>
     );
