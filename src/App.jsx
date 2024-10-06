@@ -32,21 +32,9 @@ export default function App() {
           {/* Background Color */}
           <color attach="background" args={["#000000"]} />
 
-          {/* Orbit Controls for moving around */}
-        
-          
-          {/* Stars Component */}
-          <Stars
-            radius={80}       // Increase radius for better star spread
-            depth={150000}       // Adjust depth for the star field
-            count={5000}      // Increase star count for density
-            factor={3500}         // Adjust spacing factor between stars
-            saturation={5}     // Keep saturation at 0 for white stars
-            fade               // Fading effect for stars at distance
-            speed={0.1}        // Subtle movement of stars
-          />
+          <OrbitControls enableZoom={true}/>
+          <Stars radius={80} depth={3000} count={5000} factor={60} saturation={5} fade speed={0.1} />
 
-          {/* Solar System model with planet references */}
           <SolarSystem
             section={section}
             sunRef={sunRef}

@@ -167,8 +167,8 @@ export const Interface = (props) => {
       <>
         <Section>
           <div className="flex items-center w-full justify-center">
-            {/* <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1> */}
-            <Title />
+            <h1 className="text-6xl font-thin">Let's Begin Our Journey</h1>
+            {/* <Title /> */}
 
         </div>
       </Section>
